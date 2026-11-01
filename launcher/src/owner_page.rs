@@ -14,11 +14,11 @@ impl Launcher {
             && self.opening.is_none()
     }
 
-    /// `owner` as the window shows it: the developer option that lets offline names play without
-    /// an owner (`dev_options`) hides the gate, as if the keychain hadn't answered yet.
+    /// `owner` as the window shows it: no launcher screen asks for an account any more, since
+    /// a local (offline) name plays without one (local patch).
     pub(crate) fn owner_shown(&self) -> Option<bool> {
         match self.owner {
-            Some(false) if self.settings.dev_offline => None,
+            Some(false) => None,
             owner => owner,
         }
     }

@@ -913,10 +913,9 @@ impl Launcher {
                                 continue;
                             }
                         };
-                        // Past the gate by the developer option alone is no owner.
-                        if !self.settings.dev_offline {
-                            self.owner = Some(true);
-                        }
+                        // The game starts with or without an owner: local accounts need none
+                        // (local patch).
+                        self.owner = Some(true);
                         if let Some(file) = file {
                             cmd.arg("--session-file").arg(file);
                         }

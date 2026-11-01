@@ -1516,9 +1516,8 @@ pub enum Player {
     GameName,
 }
 
-const OFFLINE_NEEDS_OWNER: &str =
-    "Offline names need a Microsoft account that owns Minecraft: Java Edition in the launcher.";
-
+/// A local (offline) account plays with no authentication: the gate below is the only place a
+/// Microsoft account is still required, and only for Mojang's downloads.
 /// The secrets an account keeps in `store`, if it still has them there.
 fn secrets_in(store: &dyn SecretStore, uuid: &str) -> Option<Secrets> {
     store
@@ -1597,7 +1596,8 @@ impl Accounts {
         Ok(())
     }
     /// Whether an account here owned the game at its last check (the keychain's answer, no
-    /// request): what Play and offline names need.
+    /// request): what Mojang's downloads and the online-mode session need. Local (offline)
+    /// names never ask for it.
     pub fn has_owner(&self, store: &dyn SecretStore) -> bool {
         // The selected account first: it owning the game ends the search after one account's
         // item — every account's item read can ask for the keychain (macOS, #4912).
@@ -1616,20 +1616,19 @@ impl Accounts {
         }
     }
 
-    /// Plays as `who`: an account, an offline name (kept, only beside an account that owns the
-    /// game), or the game's own name.
+    /// Plays as `who`: an account, a local (offline) name, or the game's own name.
     pub fn play_as(&mut self, store: &dyn SecretStore, who: Player) -> Result<(), String> {
         self.play_as_with(store, who, false)
     }
 
-    /// [`Self::play_as`], where `offline_without_owner` (the window's hidden developer option,
-    /// `backend::Settings::dev_offline`) lets an offline name play without an account that owns
-    /// the game.
+    /// [`Self::play_as`]. A local (offline) name always plays, with or without a Microsoft
+    /// account that owns the game (local patch: no authentication, no Microsoft token).
+    /// `offline_without_owner` is kept only for compatibility with the old signature.
     pub fn play_as_with(
         &mut self,
-        store: &dyn SecretStore,
+        _store: &dyn SecretStore,
         who: Player,
-        offline_without_owner: bool,
+        _offline_without_owner: bool,
     ) -> Result<(), String> {
         match who {
             Player::Microsoft(uuid) => {
@@ -1639,9 +1638,7 @@ impl Accounts {
                 self.selected = Some(uuid);
             }
             Player::Offline(name) => {
-                if !offline_without_owner && !self.has_owner(store) {
-                    return Err(OFFLINE_NEEDS_OWNER.into());
-                }
+                // A local account: no owner check, no authentication.
                 let name = self.add_offline(&name)?;
                 self.selected = None;
                 self.offline_selected = Some(name);
@@ -1843,19 +1840,21 @@ pub fn launch(
     }
 }
 
-/// The owner gate before the game starts. With the window's hidden developer option
-/// (`backend::Settings::dev_offline`, `offline_without_owner`) no owner is no refusal: the game
-/// starts offline, without a session and without an `owner`. Downloads never come through here:
-/// `backend::download_for_owner` asks [`launch`] itself, so the option never downloads the game.
+/// The gate before the game starts. Local accounts play with no Microsoft account at all
+/// (local patch): when no account in the launcher owns the game the game still starts, offline,
+/// without a session and without an `owner`. Downloads never come through here:
+/// `backend::download_for_owner` asks the strict [`launch`] itself, so only a signed-in owner
+/// can download the game's files from Mojang.
 pub fn launch_for_game(
     ep: &Endpoints,
     client_id: Option<&str>,
     store: &dyn SecretStore,
     accounts: &mut Accounts,
-    offline_without_owner: bool,
+    _offline_without_owner: bool,
 ) -> Result<Launch, NoOwner> {
     match launch(ep, client_id, store, accounts) {
-        Err(NoOwner) if offline_without_owner => Ok(Launch::default()),
+        // A local name with no owner plays: no refusal, the game starts offline.
+        Err(NoOwner) => Ok(Launch::default()),
         pass => pass,
     }
 }
