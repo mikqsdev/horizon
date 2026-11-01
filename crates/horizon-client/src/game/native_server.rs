@@ -704,7 +704,7 @@ impl Game<'_> {
     /// another player's (inside that player's hook, only they are reached).
     /// The player's screen follows as for any change to their inventory.
     /// What an auto-pickup or a machine's output to a player needs, from any
-    /// server hook. API @API:give_stack@.
+    /// server hook. API 98.
     pub(super) fn native_give_stack(
         &mut self,
         uuid: u128,
@@ -786,7 +786,7 @@ fn orb_meets(position: [f64; 3], min: [f64; 3], max: [f64; 3]) -> bool {
         && position[2] + 0.25 > min[2]
 }
 
-/// Experience for server mods. API @API:give_experience@.
+/// Experience for server mods. API 101.
 #[allow(dead_code)]
 impl Game<'_> {
     /// The experience orbs of the server level `dimension` whose box meets

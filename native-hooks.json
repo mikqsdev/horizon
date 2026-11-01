@@ -551,6 +551,245 @@
       "name": "screen_mouse_button_released_pre",
       "version": 1,
       "target": "horizon_client::game::native_hooks::Game<'_>::native_screen_mouse_button_released_pre"
+    },
+    {
+      "name": "camera_shake",
+      "version": 1,
+      "target": "horizon_client::game::native_hooks::Game<'_>::native_camera_shake"
+    },
+    {
+      "name": "shader_params",
+      "version": 1,
+      "target": "horizon_client::game::native_hooks::Game<'_>::native_shader_params"
+    },
+    {
+      "name": "block_highlight",
+      "version": 1,
+      "target": "horizon_client::game::native_hooks::Game<'_>::native_block_highlight",
+      "side": "client",
+      "cancellable": true
+    },
+    {
+      "name": "render_hand",
+      "version": 1,
+      "target": "horizon_client::game::native_hooks::Game<'_>::native_render_hand",
+      "neoforge": "RenderHandEvent",
+      "side": "client",
+      "cancellable": true
+    },
+    {
+      "name": "client_resources_reloaded",
+      "version": 1,
+      "target": "horizon_client::game::native_hooks::Game<'_>::native_client_resources_reloaded",
+      "side": "client"
+    },
+    {
+      "name": "item_decorations",
+      "version": 1,
+      "target": "horizon_client::game::native_hooks::Game<'_>::native_item_decorations",
+      "neoforge": "RegisterItemDecorationsEvent",
+      "side": "client"
+    },
+    {
+      "name": "use_duration",
+      "version": 1,
+      "target": "horizon_client::game::native_hooks::Game<'_>::native_use_duration"
+    },
+    {
+      "name": "use_animation",
+      "version": 1,
+      "target": "horizon_client::game::native_hooks::Game<'_>::native_use_animation",
+      "side": "client"
+    },
+    {
+      "name": "can_eat",
+      "version": 1,
+      "target": "horizon_client::game::native_hooks::Game<'_>::native_can_eat"
+    },
+    {
+      "name": "living_entity_use_item_start",
+      "version": 1,
+      "target": "horizon_client::game::native_hooks::Game<'_>::native_living_entity_use_item_start",
+      "neoforge": "LivingEntityUseItemEvent.Start",
+      "cancellable": true
+    },
+    {
+      "name": "living_entity_use_item_finish",
+      "version": 1,
+      "target": "horizon_client::game::native_hooks::Game<'_>::native_living_entity_use_item_finish",
+      "neoforge": "LivingEntityUseItemEvent.Finish",
+      "side": "server"
+    },
+    {
+      "name": "screen_mouse_scrolled_pre",
+      "version": 1,
+      "target": "horizon_client::game::native_hooks::Game<'_>::native_screen_mouse_scrolled_pre"
+    },
+    {
+      "name": "player_command",
+      "version": 1,
+      "target": "horizon_client::game::native_hooks::Game<'_>::native_player_command",
+      "neoforge": "CommandEvent",
+      "side": "server",
+      "cancellable": true
+    },
+    {
+      "name": "perform_console_command",
+      "version": 1,
+      "target": "horizon_client::game::native_hooks::Game<'_>::native_perform_console_command"
+    },
+    {
+      "name": "screen_key_pressed_pre",
+      "version": 1,
+      "target": "horizon_client::game::native_hooks::Game<'_>::native_screen_key_pressed_pre"
+    },
+    {
+      "name": "screen_char_typed_pre",
+      "version": 1,
+      "target": "horizon_client::game::native_hooks::Game<'_>::native_screen_char_typed_pre"
+    },
+    {
+      "name": "data_pack_files",
+      "version": 1,
+      "target": "horizon_client::game::native_hooks::Game<'_>::native_data_pack_files"
+    },
+    {
+      "name": "biome_colors",
+      "version": 1,
+      "target": "horizon_client::game::native_hooks::Game<'_>::native_biome_colors",
+      "side": "client"
+    },
+    {
+      "name": "server_data_loaded",
+      "version": 1,
+      "target": "horizon_client::game::native_hooks::Game<'_>::native_server_data_loaded"
+    },
+    {
+      "name": "compute_fov",
+      "version": 1,
+      "target": "horizon_client::game::native_hooks::Game<'_>::native_compute_fov",
+      "neoforge": "ViewportEvent.ComputeFov",
+      "side": "client"
+    },
+    {
+      "name": "mob_submit",
+      "version": 1,
+      "target": "horizon_client::game::native_hooks::Game<'_>::native_mob_submit",
+      "neoforge": "RenderLivingEvent.Pre",
+      "side": "client",
+      "cancellable": true
+    },
+    {
+      "name": "camera_distance",
+      "version": 1,
+      "target": "horizon_client::game::native_hooks::Game<'_>::native_camera_distance",
+      "neoforge": "CalculateDetachedCameraDistanceEvent",
+      "side": "client"
+    },
+    {
+      "name": "compute_fog_color",
+      "version": 1,
+      "target": "horizon_client::game::native_hooks::Game<'_>::native_compute_fog_color",
+      "neoforge": "ViewportEvent.ComputeFogColor",
+      "side": "client"
+    },
+    {
+      "name": "mouse_button_pre",
+      "version": 1,
+      "target": "horizon_client::game::native_hooks::Game<'_>::native_mouse_button_pre",
+      "neoforge": "InputEvent.MouseButton.Pre",
+      "side": "client",
+      "cancellable": true
+    },
+    {
+      "name": "mouse_button_post",
+      "version": 1,
+      "target": "horizon_client::game::native_hooks::Game<'_>::native_mouse_button_post",
+      "neoforge": "InputEvent.MouseButton.Post",
+      "side": "client"
+    },
+    {
+      "name": "player_respawned",
+      "version": 1,
+      "target": "horizon_client::game::native_hooks::Game<'_>::native_player_respawned",
+      "neoforge": "PlayerEvent.PlayerRespawnEvent",
+      "side": "server"
+    },
+    {
+      "name": "render_fog",
+      "version": 1,
+      "target": "horizon_client::game::native_hooks::Game<'_>::native_render_fog",
+      "neoforge": "ViewportEvent.RenderFog",
+      "side": "client"
+    },
+    {
+      "name": "screen_key_released_pre",
+      "version": 1,
+      "target": "horizon_client::game::native_hooks::Game<'_>::native_screen_key_released_pre",
+      "neoforge": "ScreenEvent.KeyReleased.Pre",
+      "side": "client",
+      "cancellable": true
+    },
+    {
+      "name": "music",
+      "version": 1,
+      "target": "horizon_client::game::native_hooks::Game<'_>::native_music",
+      "neoforge": "SelectMusicEvent",
+      "side": "client"
+    },
+    {
+      "name": "music_layers",
+      "version": 1,
+      "target": "horizon_client::game::native_hooks::Game<'_>::native_music_layers",
+      "side": "client"
+    },
+    {
+      "name": "datapack_sync",
+      "version": 1,
+      "target": "horizon_client::game::native_hooks::Game<'_>::native_datapack_sync",
+      "neoforge": "OnDatapackSyncEvent",
+      "side": "server"
+    },
+    {
+      "name": "recipes_received",
+      "version": 1,
+      "target": "horizon_client::game::native_hooks::Game<'_>::native_recipes_received",
+      "neoforge": "RecipesReceivedEvent",
+      "side": "client"
+    },
+    {
+      "name": "input_key",
+      "version": 1,
+      "target": "horizon_client::game::native_hooks::Game<'_>::native_input_key",
+      "neoforge": "InputEvent.Key",
+      "side": "client"
+    },
+    {
+      "name": "mouse_scrolling",
+      "version": 1,
+      "target": "horizon_client::game::native_hooks::Game<'_>::native_mouse_scrolling",
+      "neoforge": "InputEvent.MouseScrollingEvent",
+      "side": "client",
+      "cancellable": true
+    },
+    {
+      "name": "screen_mouse_dragged_pre",
+      "version": 1,
+      "target": "horizon_client::game::native_hooks::Game<'_>::native_screen_mouse_dragged_pre",
+      "neoforge": "ScreenEvent.MouseDragged.Pre",
+      "side": "client",
+      "cancellable": true
+    },
+    {
+      "name": "mod_container_viewers",
+      "version": 1,
+      "target": "horizon_client::game::native_hooks::Game<'_>::native_mod_container_viewers",
+      "side": "server"
+    },
+    {
+      "name": "living_knockback",
+      "version": 1,
+      "target": "horizon_client::game::native_hooks::Game<'_>::native_living_knockback"
     }
   ]
 }
